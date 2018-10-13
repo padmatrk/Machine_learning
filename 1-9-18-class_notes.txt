@@ -1,0 +1,309 @@
+Steps:-
+1. Load dataset
+2. Split dataset
+3. Define an algorithm
+4. Training
+5. Validation
+6. Tuning
+7. Testing
+
+Assume:-
+1. Application
+2. Algorithms
+3. Datasets
+
+metrics:-
+accuracy -> Classification
+error  -> regression
+
+error:-
+
+absolute error:- y-y^
+mean absolute error:- (y-y^)/n
+mean squared error:- (y-y^)**2/n
+least mean squared error sqrt((y-y^)**2/n)
+
+ML Algorithms:-
+
+1. Linear regression -> regression
+2. Logistic regression -> Classification
+3. SVM -> Classification
+4. K-means -> clustering
+5. KNN  -> clustering
+6. Hierarchy clustering -> clustering
+7. LDA -> topic modeling
+8. TF-IDF -> topic modeling
+9. Eclat -> associative learning
+10. Aprior -> associative learning
+11. Random forest -> Ensemble method
+12. AdaBoost -> Ensemble method
+13. Decision tree -> Classification
+14. Naive Baye's -> Classification
+15. PCA -> Dimensionality reduction
+
+Neural Network:-
+
+1. perceptron
+2. sigmoid
+3. multi layer preceptron
+4. Backpropagation
+4.a gradient descent
+4.b stochostic gradient descent
+5. Vanila neural network
+
+Face recognition
+
+LFW -> labeled wild face
+FRGC -> Face recognition grand challenge
+
+object recogition
+
+coco
+cifar-100/cifar-10
+
+
+NLP processing 
+
+SQuAD dataser
+IMDb movie review dataset
+twitter dataset
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+1. linear regression
+
+linear equation => y=mx+c (eqn of line)
+
+y^ = beta0+beta1*x
+
+e.g:-
+
+		(2,5),(3,7),(4,10),(7,?)   -> predicted value is 16 
+
+			y-y^ =0
+
+		y-(beta0+beta1*x) = 0
+
+			5-b0-b1*2=0   --> 1        error calculation:-  y^ = 2+2*2 = 6 => y-y^ = |5-6| = 1
+			7-b0-b1*3=0   --> 2                             y^ = 2+2*3 = 8 => y-y^ = [7-8| = 1
+			
+			solving 1 & 2
+			-2+b1=0
+			
+			[b1=2]
+		apply b1 in 3
+		 
+			10-b0-b1*4=0
+			10-b0-8 = 0
+			2-b0 =0
+			
+			[b0=2]
+		
+		y^=beta0+beta1*x
+		y^ = 2+2*7
+		y^=16
+
+e.g :- 
+              (2,3,8),(4,2,10),(2,8,12),(3,5,?) -> multilinear regression 
+              y^ = beta0+beta1*x_1+beta2*x_2+......+betan*x_n
+            
+Scenario:-
+
+sale value forecasting based Ad 
+
+---------------------------------------------------------------------------------------------------------------------------
+
+2.Logistic Regression 
+
+logit function => log(p/1-p)
+
+logistic function => inverse (logit function) => 1/1+exp(-z) (sigmoid function)
+
+z-> mx+c (output from linear regression)
+
+- infinity to +infinity => 1/1+exp(-z) => 0-1 
+
+biclass -> 0-0.5/0.5-1
+
+multiclass (5) -> 0-0.2/0.2-0.4/..../0.8-1 (multnomial)
+
+Scenario:-
+
+IMDb movie review sentiment analysis
+
+I bought a product from flipkart for 5000 Rs which is very good to use. -> positive
+
+product  flipkart very good  -> positive
+
+CountVectorizer:
+
+my friend's name is John and his pet's name is Tom. (line number 0)
+
+stop words:-
+-> friend's name  John pet's name Tom
+lemmatization:-
+-> friend name John pet name Tom
+
+
+n-gram if n = 1 -> unigram, if n = 2 -> bigram
+
+unigram   				bigram
+
+friend  (0,1)			friend name
+name (0,2)			name John
+John (0,1)			John pet
+pet (0,1)			pet name
+Tom (0,1)			name Tom
+ 
+apple is a good fruit, apple is in red color,an apple keeps a doctor away  -> min_df = 2
+
+Known words: apple,is,a -> apple -2 ,is - 3 ,a - 4
+unknown words : good,fruit,in,red,color,doctor,keeps,away,an  - 1 
+
+Steps for sentiment analysis:-
+0. Cleaning dataset                                       
+1. Load dataset
+1.a Text into vectors   -> count vectorizers or pre-trained vectors (GLoVe)
+2. Split dataset
+3. Define an algorithm
+4. Training
+5. Validation
+6. Tuning
+7. Testing
+				Cleaning dataset
+				   a. remove NA values (for both text and numericals)
+				   b. fill NA values by using mean/median (for numericals) and mode (For text )
+				   c. remove duplicates (for both text and numericals)
+				   d. remove unwanted inputs (HTML tags,special characters etc...)(for text)
+				   e. remove stopwords (for text)
+				   f. casefolding (for text)
+				   g. resize/crop the image
+				   h. remove noise (for image)
+				   i. rotating the image (if required)
+				   j. converting RGB into single chanel (for image)
+				   				  
+---------------------------------------------------------------------------------------------------------------------------
+3. SVM -> support vector machine 
+
+Bi-classification algorithm -category
+
+one to one --> A/B
+
+ABC - 3 groups
+one to many --> A/BC -> if it BC then B/C
+
+ABCD - 4 groups
+many to many --> AB/CD --> if it AB then A/B else C/D
+
+margin -> a. Soft margin
+	  b. Hard margin
+
+margin is a distance between first data points and the border.
+
+				+ /|\ o
+---------------------------------------------------------------------------------------------------------------------------
+4. K-means
+
+k => no of cluster
+
+means of vector distance
+
+---------------------------------------------------------------------------------------------------------------------------
+5. KNN -> k Nearest Neighbours
+
+clustering/classification
+
+vector distance
+
+---------------------------------------------------------------------------------------------------------------------------
+
+TASK- Results
+
+Dataset:- IMDb sentiment analysis
+
+Algorithms :- Logistic	SVM	KNN
+
+cleaned		88.5%	 87%	 97%
+
+uncleaned 	89.5%	 88%	 --
+
+uncleaned
+
+the product is awesome
+service is good 
+
+cleaned
+
+product awesome
+service good 
+
+---------------------------------------------------------------------------------------------------------------------------
+6. Hierarchy clustering
+
+clustering scenario 
+
+dendrogram,linkage 
+
+vector distance
+
+dendrogram---> a tree diagram, especially one showing taxonomic relationships.
+
+linkage --> simple,centre/average,complete
+
+eg:-
+
+banana,orange,apple,lemon,papaya
+
+---------------------------------------------------------------------------------------------------------------------------
+7. Apriori 
+
+	     Number of transaction of an item
+support = ------------------------------------
+	     Total number of transaction 
+	     
+for an item to be in offer list, that item should have minimum support 
+
+min_sup = 50% = 3
+
+onion,potato  --> 4
+onion,burger  --> 3
+onion,milk    --> 2
+onion,beer    --> 2
+potato,burger --> 4
+potato,milk   --> 3
+potato,beer   --> 2
+burger,milk   --> 2
+burger,beer   --> 2
+milk,beer     --> 2
+
+two product combo
+onion,potato  
+onion,burger
+potato,burger 
+potato,milk 
+
+width search algorithm
+computational time is high 
+
+one hot encoding
+
+---------------------------------------------------------------------------------------------------------------------------
+8. ECLAT
+
+Equivalent class transformation 
+
+depth search algorithm
+
+---------------------------------------------------------------------------------------------------------------------------
+9. 
+
+
+
+
+
+
+
+
+
+
+
